@@ -28,6 +28,24 @@
 
 </form>
 
+
+
+<h3>Update Your Meal Plan</h3>
+
+<form>
+    <label for="cuisine">Enter cuisine type</label>
+    <input type="text" id="cuisine" value="Italian">
+    <br><br>
+
+    <label for="beverage">Enter beverage choice</label>
+    <input type="text" id="beverage" value="water">
+    <br><br>
+    
+<button type="button" onclick="updateMeal()">
+    Update the meal plan
+</button>
+
+</form>
 <p id="result">Your meal choices will appear here.</p>
 
 <script>
@@ -45,13 +63,32 @@
         my_meal_plan.dinner =
             document.getElementById("dinner").checked;
 
-        document.getElementById("result").innerHTML =
-            JSON.stringify(my_meal_plan);
+            document.getElementById("result").innerHTML =
+            "Breakfast: " + my_meal_plan.breakfast +
+            "<br>Lunch: " + my_meal_plan.lunch +
+            "<br>Dinner: " + my_meal_plan.dinner +
+            "<br>Cuisine: " + (my_meal_plan.cuisine || "") +
+            "<br>Beverage: " + (my_meal_plan.beverage || "");
+
     }
+    
+    function updateMeal() {
+        let cuisine = document.getElementById("cuisine").value;
+        let beverage = document.getElementById("beverage").value;
+
+        my_meal_plan["cuisine"] = cuisine;
+        my_meal_plan["beverage"] = beverage;
+
+        document.getElementById("result").innerHTML =
+            "Breakfast: " + my_meal_plan.breakfast +
+            "; Lunch: " + my_meal_plan.lunch +
+            "; Dinner: " + my_meal_plan.dinner +
+            "; Cuisine: " + (my_meal_plan.cuisine || "") +
+            "; Beverage: " + (my_meal_plan.beverage || "");
+
+    }
+
 </script>
-
-
-
 
 </body>
 </html>
